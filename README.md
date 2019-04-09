@@ -1,2 +1,2 @@
-# Image-Management-
+# Image-Management
 Image management website system
