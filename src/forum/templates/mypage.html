@@ -1,0 +1,80 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/fonts/feather/style.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/component.css" />
+	<script src="/static/bootstrap/js/modernizr.custom.js"></script>
+</head>
+<body>
+<div class="container">
+<div style="text-align:center;clear:both;">
+<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+<script src="/follow.js" type="text/javascript"></script>
+</div>
+	<section class="slider">
+       {% for post in mypagePic %}
+        {% if forloop.first %}
+		<div class="slide slide--current" data-content="{{post.id}}">
+			<div class="slide__mover">
+				<div class="zoomer flex-center">
+                    <div class="preview">
+					    <img src="{{post.picture_load.url}}" style="width:400px;height:400px"alt="Pic" />
+                       <div class="zoomer__area zoomer__area--size-2"></div>
+                    </div>
+                </div>
+			</div>
+			<h2 class="slide__title"><span>{{post.picture_name}}</span>{{post.picture_message}}</h2>
+		</div>
+        {% endif %}
+        {% if not forloop.first %}
+        <div class="slide" data-content={{post.id}}>
+			<div class="slide__mover">
+				<div class="zoomer flex-center">
+                   <div class="preview">
+					    <img src="{{post.picture_load.url}}" style="width:400px;height:400px"alt="Pic" />
+                       <div class="zoomer__area zoomer__area--size-2"></div>
+                    </div>
+				</div>
+			</div>
+			<h2 class="slide__title"><span>{{post.picture_name}}</span>{{post.picture_message}}</h2>
+		</div>
+        {% endif %}
+        {% endfor %}
+
+
+		<nav class="slider__nav">
+			<button class="button button--nav-prev"><i class="icon icon--arrow-left"></i><span class="text-hidden">Previous product</span></button>
+			<button class="button button--zoom"><i class="icon icon--zoom"></i><span class="text-hidden">View details</span></button>
+			<button class="button button--nav-next"><i class="icon icon--arrow-right"></i><span class="text-hidden">Next product</span></button>
+		</nav>
+
+	</section>
+	<section class="content">
+        {% for post in mypagePic %}
+		   <div class="content__item" id="{{post.id}}">
+			   <img class="content__item-img rounded-right" src="{{post.picture_load.url}}" alt="What_Images_I_like" />
+			   <div class="content__item-inner">
+				   <h2>{{post.picture_name}}</h2>
+				   <h3> type : {{post.picture_type}}</h3>
+				   <p>create at {{ post.picture_time }}</p>
+				   <p>by {{post.picture_user}}</p>
+			     </div>
+		   </div>
+        {% endfor %}
+
+		<button class="button button--close"><i class="icon icon--circle-cross"></i><span class="text-hidden">Close content</span></button>
+	</section>
+	<div style="text-align:center;clear:both;">
+<script src="/gg_bd_ad_720x90-2.js" type="text/javascript"></script>
+</div>
+</div>
+
+<script src="/static/bootstrap/js/classie.js"></script>
+<script src="/static/bootstrap/js/dynamics.min.js"></script>
+<script src="/static/bootstrap/js/main.js"></script>
+
+</body>
+
+{% endblock %}

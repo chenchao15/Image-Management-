@@ -1,0 +1,187 @@
+//#ADD8E6Ç³À¶É«  #EBEBEBÇ³»ÒÉ« #EE00EE×ÏÉ«
+
+* {
+  
+margin: 0px;
+
+}
+
+
+
+html {
+  
+background: url(http://imd.edumedia.ca/mars0277/code/red.jpg) no-repeat center center fixed;
+  
+-webkit-background-size: cover;
+  
+-moz-background-size: cover;
+ 
+-o-background-size: cover;
+  
+background-size: cover;
+
+}
+
+
+
+.sidebar {
+  
+width: 250px;
+  
+height: 100%;
+  
+position: absolute;
+  
+left: 0;
+top:0;
+background: #ADD8E6;
+  
+border-right: 10px solid #EBEBEB;
+
+}
+
+
+.sidebar ul {
+  
+margin-top: 30px;
+
+}
+
+
+.sidebar li {
+  
+list-style: none;
+  
+padding: 10px;
+  
+position: relative;
+
+}
+
+
+.sidebar a {
+  
+text-decoration: none;
+  
+color: #555;
+  
+font: 14px Open Sans;
+  
+text-transform: uppercase;
+  
+position: relative;
+  
+z-index: 1000;
+
+}
+
+
+.sidebar .hover {
+  
+display: block;
+  
+position: absolute;
+  
+width: 0%;
+  
+height: 50px;
+  
+top: 0px;
+  
+left: 0px;
+  
+background: #9FB6CD;
+  
+z-index: 0;
+  
+opacity: 0;
+
+}
+
+
+.sidebar a:hover {
+  
+color: #FFF;
+
+}
+
+
+.sidebar .fa-angle-right {
+  
+position: absolute;
+  
+left: 150px;
+  
+top: 1px;
+
+}
+
+
+.sidebar .sub-menu {
+  
+position: absolute;
+  
+left: 210px;
+  
+top: -30px;
+  
+padding: 0px;
+  
+width: 400px;
+  
+display: none;
+  
+background: #ADD8E6;
+
+}
+
+
+.sidebar .sub-menu li a {
+  
+padding-left: 20px;
+  
+font-size: 13px;
+
+}
+
+
+.sidebar .sub-menu i {
+  
+left: 180px;
+
+}
+
+
+.sidebar ul li:hover ul {
+  
+display: block;
+
+}
+
+
+.sidebar .push {
+  
+margin-right: 10px;
+
+}
+
+
+
+h1 {
+  
+color: #FFF;
+  
+font: 16px Open Sans;
+  
+padding-left: 50px;
+  
+padding-top: 30px;
+
+}
+
+.color {
+  
+color: #836FFF;
+
+font-weight:bolder;
+}

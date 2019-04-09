@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+	<meta charset="UTF-8">
+	<title>图片管理网站</title>
+	{% load static %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel = "stylesheet">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/homepage_siderbar.css' %}" media="screen" type="text/css" />
+    <link href="{% static 'bootstrap/css/sidebar.css' %}" rel="stylesheet" type="text/css">
+
+
+    <script>
+        function box() {
+            alert("点赞成功");
+        }
+
+        function get_path(arr, obj, count) {
+            var str = "";
+            var j = 0;
+            for (var i = 0; i < obj.length ; i++) {
+                if (obj[i] != '.')
+                    str += obj[i];
+                else {
+                    str += ".jpg";
+                    i += 3;
+                    arr[j] = str;
+                    j++;
+                    str = ""
+                }
+            }
+            arr[j] = "end";
+            count = j - 1;
+        }
+
+        i = 0;
+        function image(count) {
+            var ima = document.getElementById("image");
+            var widths = document.body.clientWidth;
+            var heights = window.screen.height;
+            ima.height = heights * 0.4 * "1";
+            ima.width =widths * 0.3 * "1";
+            ima.src = arr[i];
+            i++;
+            if (arr[i]=="end")
+                i = 0;
+            setTimeout("image()", 3000)
+            var t = widths / 68.3;
+            word_size = t + "px";
+            t = (widths - 1142) / 2.0 + 1142 * 0.125;
+            locations = t + "px";
+            for (var j = 0; j <= 3; j++) {
+                word = document.getElementById("word" + j);
+                word.style.fontSize = word_size;
+                word.style.left = locations;
+            }
+        }
+
+        var arr = new Array();
+        var count = 0;
+        var obj = "{% for data in base %}{{data.picture_load.url}}{% endfor %}";
+        get_path(arr, obj, count);
+
+        function onlyimage() {
+            var ima = document.getElementById("onlyimage");
+            var widths = document.body.clientWidth;
+            var heights = document.body.clientHeight;
+            if (ima.width > widths) {
+                ima.height = ima.height * (widths * 0.9 / ima.width) * "1";
+                ima.width = widths * 0.9 * "1";
+            }
+            var t = widths / 2.0 - ima.width / 2.0;
+            str = t + "px";
+            ima.style.left = str;
+        }
+</script>
+</head>
+<body onload="image()" style="background:url(/static/images/login.png);width:100%;height:651px">
+	<nav>
+        
+		<ul class = "nav nav-pills pull-right">
+			{% if user.is_authenticated %}
+				<li role = "presentation">
+					<a href = "{% url 'create' %}",style="color:white">上传</a>
+				</li>
+				<li role = "presentation">
+					<a href = "{% url 'logout' %}">登出
+					(<b>{{user.username}})</b></a>
+				</li>
+			{% else %}
+				<li role = "presentation">
+					<a href = "{% url 'login' %}">登录</a>
+				</li>
+				<li role = "presentation">
+					<a href = "{% url 'signup' %}">注册</a>
+				</li>
+			{% endif %}
+	</nav>
+
+    
+	<div class = "container">
+		<div class = "header clearfix">
+			<!--<h3 class = "text-muted"><a  href = "{% url 'index' %}">图片管理网站</a></h3>-->
+            <!--<p><img src="/static/images/logo.png"></p>-->
+		</div>
+		<section id = "content">{% block content %}
+		{% endblock %}</section>
+	</div>
+</div><!--end of header-->
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>注册</h3>
+<div>
+    <!--<p><img src="/static/images/kuang.jpg" style="position:absolute;left:1255px;top:10px;width:97px;height:40px"></p>-->
+	<form method = "post" action = "{% url 'signup-submit' %}">
+	{% csrf_token %}
+	<div class = "form-group">
+		<label for = "username">用户名</label>
+		<input type = "text" id = "username" name = "username"
+			class = "form-control" placeholder = " 用户名" required>
+	</div>
+	<div class = "form-group">
+		<label for = "password">密码</label>
+		<input type = "password" id = "password" name = "password"
+			class = "form-control" placeholder = " 密码" required>
+	</div>
+	<button type = "submit" class = "btn btn-primary">注册</button>
+	</form>
+</div>
+{% endblock %}

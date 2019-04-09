@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/style1.css" />
+<script src="/static/bootstrap/js/picwall/modernizr-custom.js"></script>
+
+</head>
+<body class="demo-1">
+<div style="text-align:center;clear:both;">
+<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+<script src="/follow.js" type="text/javascript"></script>
+</div>
+<div class="container">
+	<div class="content">
+		<div class="grid">
+            {% for data in new_pic %}
+			<div class="grid__item" data-size="10x50"> <a href="{{ data.picture_load.url }}" class="img-wrap"><img src="{{data.picture_load.url}}" alt="img1" />
+				<div class="description description--grid">{{data.picture_name}} by {{data.picture_user}}</div>
+				</a> </div>
+            {% endfor %}
+			
+		</div>
+		<!-- /grid -->
+		<div class="preview">
+			<button class="action action--close"><i class="fa fa-times">x</i><span class="text-hidden">Close</span></button>
+			<div class="description description--preview"></div>
+		</div>
+		<!-- /preview -->
+	</div>
+</div>
+<!-- /container -->
+
+<script src="/static/bootstrap/js/picwall/imagesloaded.pkgd.min.js"></script>
+<script src="/static/bootstrap/js/picwall/masonry.pkgd.min.js"></script>
+<script src="/static/bootstrap/js/picwall/classie.js"></script>
+<script src="/static/bootstrap/js/picwall/main.js"></script>
+<script>
+    (function () {
+        // create SVG circle overlay and append it to the preview element
+        function createCircleOverlay(previewEl) {
+            var dummy = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            dummy.setAttributeNS(null, 'version', '1.1');
+            dummy.setAttributeNS(null, 'width', '100%');
+            dummy.setAttributeNS(null, 'height', '100%');
+            dummy.setAttributeNS(null, 'class', 'overlay');
+            var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttributeNS(null, 'cx', 0);
+            circle.setAttributeNS(null, 'cy', 0);
+            circle.setAttributeNS(null, 'r', Math.sqrt(Math.pow(previewEl.offsetWidth, 2) + Math.pow(previewEl.offsetHeight, 2)));
+            dummy.appendChild(g);
+            g.appendChild(circle);
+            previewEl.appendChild(dummy);
+        }
+
+        new GridFx(document.querySelector('.grid'), {
+            onInit: function (instance) {
+                createCircleOverlay(instance.previewEl);
+            },
+            onResize: function (instance) {
+                instance.previewEl.querySelector('svg circle').setAttributeNS(null, 'r', Math.sqrt(Math.pow(instance.previewEl.offsetWidth, 2) + Math.pow(instance.previewEl.offsetHeight, 2)));
+            },
+            onOpenItem: function (instance, item) {
+                // item's image
+                var gridImg = item.querySelector('img'),
+					gridImgOffset = gridImg.getBoundingClientRect(),
+					win = { width: document.documentElement.clientWidth, height: window.innerHeight },
+					SVGCircleGroupEl = instance.previewEl.querySelector('svg > g'),
+					SVGCircleEl = SVGCircleGroupEl.querySelector('circle');
+
+                SVGCircleEl.setAttributeNS(null, 'r', Math.sqrt(Math.pow(instance.previewEl.offsetWidth, 2) + Math.pow(instance.previewEl.offsetHeight, 2)));
+                // set the transform for the SVG g node. This will animate the circle overlay. The origin of the circle depends on the position of the clicked item.
+                if (gridImgOffset.left + gridImg.offsetWidth / 2 < win.width / 2) {
+                    SVGCircleGroupEl.setAttributeNS(null, 'transform', 'translate(' + win.width + ', ' + (gridImgOffset.top + gridImg.offsetHeight / 2 < win.height / 2 ? win.height : 0) + ')');
+                }
+                else {
+                    SVGCircleGroupEl.setAttributeNS(null, 'transform', 'translate(0, ' + (gridImgOffset.top + gridImg.offsetHeight / 2 < win.height / 2 ? win.height : 0) + ')');
+                }
+            }
+        });
+    })();
+</script>
+
+</body>
+
+{% endblock %}

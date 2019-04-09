@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class = "panel panel-default">
+	<div class = "panel-heading">
+		<h3>{{post.picture_name}}</h3>
+		<small>
+			{% bootstrap_icon 'user' %}<strong>{{post.picture_user}}</strong>
+			{% bootstrap_icon 'time' %}<span>{{post.picture_time}}</span>
+		</small>
+	</div>
+	<div class = "panel-body word-wrap">
+		{{post.picture_message}}
+	</div>
+	<div class = "panel-footer"></div>
+</div>
+
+<ul class = "list-group">
+	<li class = "list-group-item">{{post.replies.count}}条回复</li>
+	{% for reply in post.replies.all %}
+		<li class = "list-group-item clearfix">
+			<div class = "word-wrap">{{reply.content}}</div>
+			<div class = "pull-right">
+				{% bootstrap_icon 'user' %}
+				<b>{{reply.author}}</b>
+				{% bootstrap_icon 'time' %}
+				<span>{{reply.created_at}}</span>
+			</div>
+		</li>
+	{% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+<div class = "panel panel-default">
+	<div class = "panel-heading">创建回复</div>
+	<div class = "panel-body">
+		<form method="POST" action = "{% url 'reply' post.id %}">
+			{% csrf_token %}
+			{% bootstrap_form reply_form layout='inline' %}
+			{% buttons submit=' 提交' %}{% endbuttons %}
+		</form>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
