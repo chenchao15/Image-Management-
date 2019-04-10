@@ -6,19 +6,19 @@ Image management website system
 
 ## 主要文件说明：
 
-后端：
+### 后端：
 ![图片说明1](https://github.com/chenchao15/Image-Management-/blob/master/src/forum/static/images/2.jpg)
 
-前端:
+### 前端:
 ![图片说明1](https://github.com/chenchao15/Image-Management-/blob/master/src/forum/static/images/3.jpg)
 
 ## 配置环境：
 
-后端：
+### 后端：
 
 python + django + mysql
 
-前端:
+### 前端:
 
 html + javascript + css
 
