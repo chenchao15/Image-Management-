@@ -16,7 +16,7 @@ Image management website system
 
 ### 系统环境：
 
-windows 10
+windows 10 / ubuntu16.04
 
 ### 开发环境：
 
