@@ -14,6 +14,12 @@ Image management website system
 
 ## 配置环境：
 
+### 系统环境：
+
+windows 10
+
+### 开发环境：
+
 #### 后端：
 
 python + django + mysql
