@@ -14,4 +14,8 @@ python + django + mysql
 
 html + javascript + css
 
+## 运行:
+
+python manage.py runserver 0.0.0.0:8000
+
 
